@@ -3,13 +3,13 @@
 # Base on Adafruit Blinka & SSD1306 Libraries
 # Installation & Setup Instructions - https://www.the-diy-life.com/add-an-oled-stats-display-to-raspberry-pi-os-bullseye/
 import time
-import board
-import busio
+#import board import SCL, SDA
+#import busio
 import gpiozero
 
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
-
+from adafruit_extended_bus import ExtendedI2C as I2C
 import subprocess
 
 # Use gpiozero to control the reset pin
@@ -24,14 +24,14 @@ BORDER = 5
 LOOPTIME = 1.0
 
 # Use I2C for communication
-i2c = board.I2C()
+i2c = I2C(4)
 
 # Manually reset the display (high -> low -> high for reset pulse)
-oled_reset_pin.on()
-time.sleep(0.1)  # Delay for a brief moment
-oled_reset_pin.off()  # Toggle reset pin low
-time.sleep(0.1)  # Wait for reset
-oled_reset_pin.on()  # Turn reset pin back high
+#oled_reset_pin.on()
+#time.sleep(0.1)  # Delay for a brief moment
+#oled_reset_pin.off()  # Toggle reset pin low
+#time.sleep(0.1)  # Wait for reset
+#oled_reset_pin.on()  # Turn reset pin back high
 
 # Create the OLED display object
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C)

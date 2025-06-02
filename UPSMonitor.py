@@ -1,4 +1,4 @@
-# Created by: Michael Klements
+# Created by: Michael Klements modified by Brandon Ginn (pierut)
 # For Raspberry Pi Desktop Case with OLED Stats Display & SupTronics X1200 UPS
 # Base on Adafruit Blinka & SSD1306 Libraries
 # Installation & Setup Instructions - https://www.the-diy-life.com/add-an-oled-stats-display-to-raspberry-pi-os-bullseye/
@@ -10,6 +10,7 @@ import struct
 import smbus
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
+from adafruit_extended_bus import ExtendedI2C as I2C
 import subprocess
 
 # Define the Reset Pin using gpiozero
@@ -23,7 +24,13 @@ BORDER = 5
 # Switch between displays every 5 seconds
 LOOPTIME = 5.0
 
-i2c = board.I2C()
+
+### pierut's modification ###
+# change the number on the line below to the bus number that you are using. i2cdetect -l will list all of the busses 
+# i2cdetect -y (bus number) will show the devices connected to that bus.
+i2c = I2C(4)
+
+
 oled_reset.on()
 time.sleep(0.1)
 oled_reset.off()

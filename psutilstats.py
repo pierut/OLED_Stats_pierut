@@ -1,4 +1,4 @@
-#psutil version coded by Jurgen Pfeifer
+#psutil version coded by Jurgen Pfeifer modified by Brandon Ginn (pierut)
 #Extends compatability, should run on Debian and Ubuntu
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -9,6 +9,7 @@ import socket
 import board
 import digitalio
 import adafruit_ssd1306
+from adafruit_extended_bus import ExtendedI2C as I2C
 #
 from PIL import Image, ImageDraw, ImageFont
 #
@@ -25,7 +26,7 @@ LOOPTIME = 1.0
 # Examples for usage:
 #    IP = get_ipv4_from_interface("eth0")
 #    IP = get_ipv4_from_interface("wlan0")
-def get_ipv4_from_interface(interfacename):
+def get_ipv4_from_interface(eth0):
     res="IP ?"
     try:
         iface=PS.net_if_addrs()[interfacename]
@@ -53,7 +54,12 @@ def get_ipv4():
     return "IP ?"
 #
 # Use for I2C.
-i2c = board.I2C()
+### pierut's modification. see stats.py for more information. ###
+
+i2c = I2C(4)
+
+
+
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c, addr=0x3C)
 
 # Clear display.

@@ -1,19 +1,19 @@
-# Created by: Michael Klements
+# Created by: Michael Klements modified by Brandon Ginn (pierut)
 # For Raspberry Pi Desktop Case with OLED Stats Display
 # Base on Adafruit Blinka & SSD1306 Libraries
 # Installation & Setup Instructions - https://www.the-diy-life.com/add-an-oled-stats-display-to-raspberry-pi-os-bullseye/
 import time
 import board
-import busio
-import gpiozero
+#import busio
+#import gpiozero
 
 from PIL import Image, ImageDraw, ImageFont
 import adafruit_ssd1306
-
+from adafruit_extended_bus import ExtendedI2C as I2C
 import subprocess
 
 # Define the Reset Pin using gpiozero
-oled_reset = gpiozero.OutputDevice(4, active_high=False)  # GPIO 4 (D4) used for reset
+#oled_reset = gpiozero.OutputDevice(4, active_high=False)  # GPIO 4 (D4) used for reset
 
 # Display Parameters
 WIDTH = 128
@@ -24,7 +24,9 @@ BORDER = 5
 LOOPTIME = 1.0
 
 # Use I2C for communication
-i2c = board.I2C()
+### pierut's modification. see same entry in stats.py for more information. ###
+
+i2c = I2C(4)
 
 # Manually reset the display (high -> low -> high for reset pulse)
 oled_reset.on()  # Set the reset pin high
