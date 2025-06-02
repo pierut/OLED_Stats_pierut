@@ -1,5 +1,8 @@
 # OLED Stats
 
+Brandon's modifications add the ability to specify a different bus than bus 0.
+
+
 OLED Stats Display Script For A Raspberry Pi Running Raspberry Pi OS Bookworm. The installation process and script has been tested on a Pi 3, 4 and 5.
 
 Full setup instructions available on my blog - https://www.the-diy-life.com/add-an-oled-stats-display-to-raspberry-pi-os-bookworm/
